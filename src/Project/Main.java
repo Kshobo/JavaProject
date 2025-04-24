@@ -114,8 +114,6 @@ public class Main extends JFrame implements ActionListener{
 					    System.out.println("Chance of Approval: " + result + "%");
 					} 
 					
-					loanresult = new JLabel("Your chance of getting a loan is " + result + "%" );
-					this.add(label2);
 				}// end of while loop
 				
 				
