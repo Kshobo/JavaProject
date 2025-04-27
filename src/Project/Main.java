@@ -1,5 +1,12 @@
 package Project;
 
+/*
+ Author: Kieron Ayoshobo (C23436012)
+ Description: Reading from a file (data set) to determine the likelihood
+ of someone being approved for a loan
+ Date: 28/04/2025
+ */
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -34,6 +41,7 @@ public class Main extends JFrame implements ActionListener{
 	
 	public Main()
 	{
+		// Creating the GUI 
 		frame = new JFrame();
 		this.setTitle("Predictive Model");
 		this.setSize(450,450);
@@ -54,6 +62,7 @@ public class Main extends JFrame implements ActionListener{
 		button = new JButton("Submit");
 		button.addActionListener(this);
 		
+		// Questions and Text fields in GUI
 		label1 = new JLabel("If you are older than 45 enter 'Older' otherwise 'Younger'?");
 		this.add(label1);
 		this.add(text1);
@@ -77,7 +86,7 @@ public class Main extends JFrame implements ActionListener{
 	int result;
 
 	@Override
-	public void actionPerformed(ActionEvent e) 
+	public void actionPerformed(ActionEvent e) //
 	{
 		if(e.getSource() == button)
 		{
@@ -97,18 +106,18 @@ public class Main extends JFrame implements ActionListener{
 				reader = new BufferedReader(new FileReader(filename));
 				while ((line = reader.readLine()) != null)
 				{
-					String[] row = line.split(",");
+					String[] row = line.split(",");// Breaks down each line into segments based on commas and stores them in the array
 					
-					if(row[0].equals(age) && row[1].equals(income) && row[2].equals(credit) && row[3].equals(job))
+					if(row[0].equals(age) && row[1].equals(income) && row[2].equals(credit) && row[3].equals(job))// If the values entered match those of a row on the file 
 					{
-						total++;
-						if(row[4].equals(Yes))
+						total = total + 1; 
+						if(row[4].equals(Yes)) // if the loan was approved then 1 is added to approved 
 						{
-							approve++;
+							approve = approve +1;
 					    }
 					}
 					
-					if (total > 0) 
+					if (total > 0) // Calculating the likelihood of the loan being approved in %
 					{
 					    result = (approve * 100) / total;
 					    System.out.println("Chance of Approval: " + result + "%");
@@ -122,7 +131,7 @@ public class Main extends JFrame implements ActionListener{
 			
 			catch(Exception e1)
 			{
-				
+						
 			}
 			
 		} 
